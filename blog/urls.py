@@ -9,5 +9,8 @@ urlpatterns = [
     url(r'^my-articles/$', views.user_articles, name = "my-articles"),
     url(r'^(?P<pk>[\d]+)/publish/$', views.article_publish, name = "publish"),
     url(r'^(?P<pk>[\d]+)/remove/$', views.remove_article, name="remove"),
+    url(r'^(?P<pk>[\d]+)/comment/$', views.comment_on_article, name="comment"),
+    url(r'^comment/(?P<pk>[\d]+)/approve/$', views.comment_approve, name="comment-approve"),
+    url(r'^comment/(?P<pk>[\d]+)/delete/$', views.comment_delete, name="comment-delete"),
     url(r'^(?P<slug>[\w-]+)/$', views.article_detail, name = 'details') #\w -> [0-9][a-zA-Z]/s/t etc
 ]

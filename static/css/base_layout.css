@@ -44,10 +44,12 @@ header{
 
 nav{
     justify-self: end;
+    display:grid;
+    grid-template-rows:1fr 1fr;
 }
 
 nav li{
-    display: inline-block;
+    display: inline-grid;
     list-style-type: none;
     margin-left: 20px;
 }
@@ -58,6 +60,17 @@ nav button{
     cursor: pointer;
     border: 0;
     font-size: 16px;
+    padding:10px;
+}
+.loggedin-user{
+    color:#00dba0;
+    postion:relative;
+    border:1px dotted #00dba0;
+    border-radius:4px;
+    padding:10px;
+    margin-left:20px;
+    float:right;
+    cursor:default;
 }
 
 .articles{
@@ -180,5 +193,77 @@ a.highlight{
     font-size:0.9em;
     color: #0f121f;
     cursor: pointer;
+}
 
+.comment {
+    margin: 20px 0px 20px 0px;
+}
+
+.comment-date{
+    font-size:0.8em;
+    margin-left:4px;
+    color:grey;
+}
+.comment-text{
+    margin-left:5px;
+    font-size:0.85em;
+
+}
+.comment-icon img{
+    max-width:30%;
+    max-height:80px;
+}
+
+.comment-icon {
+    position: absolute;
+    left: 10px;
+    bottom: 0;
+    margin: 0;
+}
+
+.comment-icon span{
+    position:relative;
+    bottom:8px;
+}
+.comment-approve-delete{
+    border: 1px solid #00dba0;
+    padding: 4px;
+    border-radius: 4px;
+    color: #00dba0;
+    margin-right:8px;
+    font-size:0.8em;
+}
+.comment-approve-delete:hover{
+    background-color:#10b286;
+}
+.add-comment{
+    border: 1px solid #00dba0;
+    padding: 8px;
+    border-radius: 4px;
+    color: #00dba0;
+}
+ .add-comment:hover{
+    background:#10b286;
+}
+
+.comment-form label{
+    display:none;
+}
+.comment-form textarea{
+    width: 50%;
+    height: 30px;
+    border-color:#00dba0;
+}
+.comment-form{
+    padding:20px;
+    padding-left:0;
+}
+.comment-form input[type=submit]{
+    margin-top:8px;
+    border: 1px solid #00dba0;
+    padding: 8px;
+    border-radius: 4px;
+    color: #00dba0;
+    background:transparent;
+    cursor:pointer;
 }

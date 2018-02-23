@@ -1,5 +1,5 @@
 {% extends 'base_layout.html' %}
-
+{% load static from staticfiles %}
 {% block content%}
     <h1>Articles List</h1>
     <div class="articles">
@@ -16,6 +16,7 @@
 
             {% if article.published_date %}
               <p>{{ article.published_date }}</p>
+              <h2 class = "comment-icon"><a href="#"> <img src = "{% static 'comments-1.png' %}"> </a></h2>
               <p class = "author">Published</p>
 
             {% else %}

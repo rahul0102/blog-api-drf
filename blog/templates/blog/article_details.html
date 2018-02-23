@@ -2,10 +2,13 @@
 
 {% block content %}
 <div class="article-detail">
+
+  {% if article %}
+
     <div class="article">
       <center><img src="{{ article.thumbnail.url }}" alt="thumbnail"></center>
         <h2>{{ article.title }}</h2>
-        <p>{{ article.text }}</p>
+        <p>{{ article.text|linebreaks }}</p>
 
         {% if article.published_date %}
 
@@ -15,5 +18,33 @@
 
         <p class = "author">{{ article.author.username}}</p>
     </div>
+    <hr>
+        {% for comment in comments %}
+            <div class="comment">
+              <p>
+                  <strong>{{ comment.author }}</strong> <span class="comment-date">{{ comment.created_date }}</span>
+
+              </p>
+              <div class="comment-text" >
+                  <h3> {{ comment.text|linebreaks }} </h3>
+                  {% if not comment.approved_comment %}
+                    <a class="comment-approve-delete" href="/blog/comment/{{comment.pk}}/approve/">Approve</a>
+                    <a class="comment-approve-delete" href="/blog/comment/{{comment.pk}}/delete/">Delete</a>
+                  {% endif %}
+              </div>
+
+            </div>
+        {% empty %}
+            <p> No comments here yet :( </p>
+        {% endfor %}
+        <form class='comment-form' action="/blog/{{article.pk}}/comment/" method='post'>
+            {% csrf_token %}
+          {{ comment_form}}
+        <br>  <input type="submit" value="Comment">
+        </form>
+      <!-- <a class="add-comment" href="#">Add Comment</a> -->
+  {% else %}
+      <h2 style="text-align:center;">Page Not Found </h2>
+  {% endif %}
 </div>
 {% endblock %}

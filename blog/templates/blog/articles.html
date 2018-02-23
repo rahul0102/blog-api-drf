@@ -1,5 +1,6 @@
-{% extends 'base_layout.html' %}
 
+{% extends 'base_layout.html' %}
+{% load static from staticfiles %}
 {% block content%}
     <h1>Articles List</h1>
     <div class="articles">
@@ -9,6 +10,7 @@
             <h2><a href="{% url 'articles:details' slug=article.slug %}">{{ article.title }}</a></h2>
             <p>{{ article.snippet }}</p>
             <p>{{ article.published_date }}</p>
+            <h2 class = "comment-icon"><a href="{% url 'articles:details' slug=article.slug%}"> <img src = "{% static 'comments-1.png' %}"> <span>{{ article.comments.count }}</span></a></h2>
             <p class = "author">{{ article.author.username}}</p>
         </div>
     {% endfor %}

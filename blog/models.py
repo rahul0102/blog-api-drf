@@ -34,3 +34,18 @@ class Article(models.Model):
     # means what aticle object should display when we fetch from database using Article.objects.all()
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    article = models.ForeignKey('blog.Article', related_name = 'comments')
+    text = models.TextField()
+    author = models.CharField(max_length=100)
+    created_date = models.DateTimeField(auto_now_add = True)
+    approved_comment = models.BooleanField(default = False)
+    # add likes and dislikes
+
+    def __str__(self):
+        return self.text
+
+    def approve(self):
+        self.approved_comment = True
