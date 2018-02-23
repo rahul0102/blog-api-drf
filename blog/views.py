@@ -8,8 +8,8 @@ from . import forms
 
 def articles(request):
 
-    articles = Article.objects.all().order_by('published_date')
-
+    # fetch articles that are published and order by them published date
+    articles = Article.objects.exclude(published_date = None).order_by('published_date')
     return render(request, 'blog/articles.html', {'articles': articles})
 
 def article_detail(request, slug):
@@ -23,12 +23,19 @@ def article_create(request):
         form = forms.CreateArtcile(request.POST, request.FILES)
         author = request.user
         article_instance= form.save(commit=False)
-        article_instance.publish(author)
+        article_instance.create(author)
         #save to db
-        return redirect('articles:list')
+        return redirect('articles:my-articles')
     else:
         form = forms.CreateArtcile()
     return render(request, 'blog/article_create.html',{'form': form})
+
+@login_required(login_url = '/account/login/')
+def article_publish(request, pk):
+    if request.method == 'POST':
+        article = get_object_or_404(Article, pk=pk)
+        article.publish()
+    return redirect('articles:my-articles')
 
 @login_required(login_url = '/account/login/')
 def user_articles(request):

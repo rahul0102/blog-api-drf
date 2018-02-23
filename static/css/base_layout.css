@@ -92,6 +92,7 @@ nav button{
 }
 
 .article-detail  .article img{
+    max-height: 380px;
     max-width: 100%;
 }
 
@@ -155,7 +156,7 @@ a.highlight{
     border-radius: 4px;
     margin: 10px 0;
 }
-.delete-post-link button{
+.delete-article-link button{
     padding: 10px;
     background: #00dba0;
     position:absolute;
@@ -166,4 +167,18 @@ a.highlight{
     font-size:0.9em;
     color: #0f121f;
     cursor: pointer;
+}
+
+.publish-article-link button{
+    padding: 10px;
+    background: #00dba0;
+    position:absolute;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border:none;
+    font-size:0.9em;
+    color: #0f121f;
+    cursor: pointer;
+
 }

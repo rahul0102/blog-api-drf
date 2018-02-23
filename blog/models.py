@@ -13,13 +13,17 @@ class Article(models.Model):
     author = models.ForeignKey(User, default = None)
     thumbnail = models.ImageField(default = 'default.png', blank = True, null= True)
 
-    def publish(self, author):
+    def publish(self):
         self.published_date = timezone.now()
-        new_title = self.title.lower().strip()        
+        self.save()
+
+    def create(self, author):
+        new_title = self.title.lower().strip()
         new_slug = '-'.join(new_title.split(" "))
         self.slug = new_slug
         self.author = author
         self.save()
+
     def snippet(self):
         # return only 50 charaters of article
         if len(self.text) > 50:

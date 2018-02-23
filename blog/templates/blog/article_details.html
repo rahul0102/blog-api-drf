@@ -6,7 +6,13 @@
       <center><img src="{{ article.thumbnail.url }}" alt="thumbnail"></center>
         <h2>{{ article.title }}</h2>
         <p>{{ article.text }}</p>
+
+        {% if article.published_date %}
+
         <p>{{ article.published_date }}</p>
+
+        {% endif %}
+
         <p class = "author">{{ article.author.username}}</p>
     </div>
 </div>
