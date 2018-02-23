@@ -7,7 +7,7 @@
   {% csrf_token %}
   {{ form }}
   {% if request.GET.next %}
-    <input name = "next" value = "{{request.GET.next}}" hidden>
+    <input name = "next" value = "{{request.GET.next}}" style = "display:none;" >
   {% endif %}
   <br><input type="submit" value="Login">
 </form>

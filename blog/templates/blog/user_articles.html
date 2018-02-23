@@ -7,6 +7,10 @@
         <div class="article">
 
             <h2><a href="{% url 'articles:details' slug=article.slug %}">{{ article.title }}</a></h2>
+            <form class="delete-post-link" action= "/blog/{{article.pk}}/remove/" method="post">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
             <p>{{ article.snippet }}</p>
             <p>{{ article.published_date }}</p>
             <p class = "author">{{ article.author.username}}</p>
