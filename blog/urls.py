@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^comment/(?P<pk>[\d]+)/delete/$', views.comment_delete, name="comment-delete"),
 
     # urls for article-api
-    url(r'^api/articles/', include('blog.api.urls')),
+    url(r'^api/', include('blog.api.urls')),
     url(r'^api/users/', include('accounts.api.urls')),
 
     # end
