@@ -15,7 +15,6 @@ urlpatterns = [
 
     # urls for article-api
     url(r'^api/', include('blog.api.urls')),
-    url(r'^api/users/', include('accounts.api.urls')),
 
     # end
 

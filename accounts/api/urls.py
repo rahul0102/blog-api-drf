@@ -1,16 +1,27 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
 from .views import (
-    UserCreateAPIView,
-    UserLoginAPIView
+    UserViewSet
 )
 app_name = 'accounts-api'
+
+#######
+# Using Router for viewsets
+#######
+router = DefaultRouter()
+router.register('users', UserViewSet, 'users')
 urlpatterns = [
-    url(r'^login/$',UserLoginAPIView.as_view(),name = 'login'),
-    url(r'^register/$',UserCreateAPIView.as_view(),name = 'register'),
-    # url(r'^comments/$', CommentListAPIView.as_view(), name = 'comments'),
-    # url(r'^comments/create/$', CommentCreateAPIView.as_view(), name = 'comments-create'),
-    # url(r'^comments/(?P<pk>[\w-]+)$', CommentDetailsAPIView.as_view(), name = 'comment-detail'),
-    # url(r'^(?P<slug>[\w-]+)$',ArticleDetailsAPIView.as_view(),name = 'detail'),
-    # url(r'^(?P<slug>[\w-]+)/update/$',ArticleUpdateAPIView.as_view(),name = 'update'),
-    # url(r'^(?P<slug>[\w-]+)/delete/$',ArticleDeleteAPIView.as_view(),name = 'delete'),
+    url(r'^', include(router.urls)),
 ]
+
+#######
+
+
+#######
+# urls for viewsets without router
+#######
+# urlpatterns = [
+#     url(r'^login/$',UserLoginAPIView.as_view(),name = 'login'),
+#     url(r'^register/$',UserCreateAPIView.as_view(),name = 'register'),
+# ]
+#######

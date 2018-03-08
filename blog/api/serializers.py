@@ -9,7 +9,7 @@ from blog.models import Article, Comment
 
 class ArticleListSerializer(ModelSerializer):
     article_url = HyperlinkedIdentityField(
-        view_name='articles:articles-api:articles-detail',
+        view_name='articles:articles-api:article-detail',
         lookup_field='slug'
     )
     author = SerializerMethodField()
@@ -81,7 +81,7 @@ class CommentDetailSerializer(ModelSerializer):
 
 class CommentListSerializer(ModelSerializer):
     comment_url = HyperlinkedIdentityField(
-        view_name='articles:articles-api:comments-detail',
+        view_name='articles:articles-api:comment-detail',
     )
     article = SerializerMethodField()
     class Meta:

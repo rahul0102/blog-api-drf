@@ -2,14 +2,6 @@ from django.conf.urls import url, include
 
 from rest_framework.routers import DefaultRouter
 from .views import (
-    # ArticleCreateAPIView,
-    # ArticleListAPIView,
-    # ArticleDetailsAPIView,
-    # ArticleUpdateAPIView,
-    # ArticleDeleteAPIView,
-    # CommentCreateAPIView,
-    # CommentDetailsAPIView,
-    # CommentListAPIView,
     ArticleViewSet,
     CommentViewSet
 )
@@ -19,8 +11,8 @@ app_name = 'articles-api'
 # Using Router for viewsets
 #######
 router = DefaultRouter()
-router.register('articles', ArticleViewSet, 'articles')
-router.register('comments', CommentViewSet, 'comments')
+router.register('articles', ArticleViewSet)
+router.register('comments', CommentViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
 ]

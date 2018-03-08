@@ -67,6 +67,7 @@ class UserLoginSerializer(ModelSerializer):
             'password',
             'token',
         ]
+        write_only_fields = ['password']
         # make password write only
         extra_kwargs = {
             'password':{
@@ -102,8 +103,9 @@ class UserLoginSerializer(ModelSerializer):
 
         # generate token and pass it with data
         data["token"] = "random token"
-        print(data)
+        # print(data)
         return data
+
 class UserDetailsSerializer(ModelSerializer):
     class Meta:
         model = User
@@ -111,3 +113,4 @@ class UserDetailsSerializer(ModelSerializer):
             'username',
             'email',
         ]
+        read_only_fields = ['username']
