@@ -8,6 +8,7 @@ from rest_framework.serializers import (
 )
 
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from django.db.models import Q
 
 class UserCreateSerializer(ModelSerializer):
@@ -80,6 +81,7 @@ class UserLoginSerializer(ModelSerializer):
         email = data.get('email', None)
         password = data.get('password')
         user_obj = None
+        token = None
         # check if email or username is provided
         if not email and not username:
             raise ValidationError("Email or Username is required")
@@ -100,9 +102,12 @@ class UserLoginSerializer(ModelSerializer):
         if user_obj:
             if not user_obj.check_password(password):
                 raise ValidationError("Invalid credentials")
-
+            else:
+                # User is valid then generate Token
+                token, _ = Token.objects.get_or_create(user = user_obj)
+                print("Token", token)
         # generate token and pass it with data
-        data["token"] = "random token"
+        data["token"] = token.key
         # print(data)
         return data
 
