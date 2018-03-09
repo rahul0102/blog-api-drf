@@ -47,7 +47,7 @@ class UserViewSet(ModelViewSet):
 
     def get_permissions(self):
         action = self.action
-        print(action)
+        # print(action)
         permission_classes = self.permission_classes
         if action in ['list']:
             permission_classes = [IsAdminUser]

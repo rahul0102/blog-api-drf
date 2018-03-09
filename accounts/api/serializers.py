@@ -8,7 +8,9 @@ from rest_framework.serializers import (
 )
 
 from django.contrib.auth.models import User
-from rest_framework.authtoken.models import Token
+import jwt
+from django.conf import settings
+from datetime import datetime, timedelta
 from django.db.models import Q
 
 class UserCreateSerializer(ModelSerializer):
@@ -104,10 +106,14 @@ class UserLoginSerializer(ModelSerializer):
                 raise ValidationError("Invalid credentials")
             else:
                 # User is valid then generate Token
-                token, _ = Token.objects.get_or_create(user = user_obj)
-                print("Token", token)
+                dt = datetime.now() + timedelta(seconds = 600)
+
+                token = jwt.encode({
+                    'id': user_obj.pk,
+                    'exp': int(dt.strftime('%s'))
+                }, settings.SECRET_KEY, algorithm='HS256')
         # generate token and pass it with data
-        data["token"] = token.key
+        data["token"] = token.decode('utf-8')
         # print(data)
         return data
 

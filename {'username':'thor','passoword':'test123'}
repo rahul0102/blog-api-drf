@@ -1,9 +1,0 @@
-HTTP/1.0 400 Bad Request
-Date: Thu, 08 Mar 2018 14:17:33 GMT
-Server: WSGIServer/0.2 CPython/3.6.3
-Content-Type: application/json
-Vary: Accept, Cookie
-Allow: GET, POST, HEAD, OPTIONS
-X-Frame-Options: SAMEORIGIN
-Content-Length: 121
-

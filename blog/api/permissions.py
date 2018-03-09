@@ -25,10 +25,9 @@ class IsAdminOrAccountOwner(BasePermission):
          # # if user is admin give him rights to do anything
         # if request.method in SAFE_METHODS:
         #     return True
-        print('here')
 
         if request.user.is_staff:
             return True
         print(str(obj.username), str(request.user))
-        print('here')
+        
         return str(obj.username) == str(request.user)
